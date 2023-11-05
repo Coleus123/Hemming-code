@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title> My hemming code </title>
+	<script>
+	function code(){
+		let inpText = document.getElementById('inpMessage').value;
+		inpText = inpText.split('');
+		for (let i = 0; i < inpText.length; i++){
+			inpText[i] = parseInt(inpText[i]);
+		}
+		let cd1 = (inpText[0] + inpText[2] + inpText[3])%2;
+		let cd2 = (inpText[0] + inpText[1] + inpText[3])%2;
+		let cd3 = (inpText[1] + inpText[2] + inpText[3])%2;
+		document.getElementById('outputMessage').value = inpText.join('') + cd1 + cd2 + cd3;
+		document.getElementById('ph').innerText = 'no errors';
+	}
+	</script>
+</head>
+<body>
+	<h1>Hemming code</h1>
+	<p><input type='text' id='inpMessage'/>input message, 4 bits</p>
+	<p><input type='button' value='Code' onclick='code()'/></p>
+	<p><input type='text' id='outputMessage'/>coded message</p>
+	<p><input type='button' value='Check'/></p>
+	<p><input type='text'/>original message</p>
+	<p id='ph'></p>
+</body>
+</html>
