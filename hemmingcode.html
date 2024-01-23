@@ -11,8 +11,23 @@
 		let cd1 = (inpText[0] + inpText[2] + inpText[3])%2;
 		let cd2 = (inpText[0] + inpText[1] + inpText[3])%2;
 		let cd3 = (inpText[1] + inpText[2] + inpText[3])%2;
-		document.getElementById('outputMessage').value = inpText.join('') + cd1 + cd2 + cd3;
-		document.getElementById('ph').innerText = 'no errors';
+		return inpText.join('') + cd1 + cd2 + cd3;
+		//document.getElementById('outputMessage').value = inpText.join('') + cd1 + cd2 + cd3;
+		//document.getElementById('ph').innerText = 'no errors';
+	}
+	function Coded(){
+		let inpCoded = document.getElementById('codedMessage').value;
+		let correctAnswer = code();
+		if (correctAnswer.length != inpCoded.length){
+			console.log("Закодированное сообщение должно состоять из 7 цифр")
+		}
+		for (let i = 4; i < 7; i++){
+			if (correctAnswer[i] == inpCoded[i]){
+				continue;
+			}
+			document.getElementById('ph').innerText = 'Ошибка на позиции ' + i;
+		}
+		document.getElementById('correctmes').value = correctAnswer;
 	}
 	</script>
 </head>
@@ -20,9 +35,9 @@
 	<h1>Hemming code</h1>
 	<p><input type='text' id='inpMessage'/>input message, 4 bits</p>
 	<p><input type='button' value='Code' onclick='code()'/></p>
-	<p><input type='text' id='outputMessage'/>coded message</p>
-	<p><input type='button' value='Check'/></p>
-	<p><input type='text'/>original message</p>
+	<p><input type='text' id='codedMessage'/>coded message</p>
+	<p><input type='button' value='Check' onclick='Coded()'/></p>
+	<p><input type='text' id='correctmes'/>correct message</p>
 	<p id='ph'></p>
 </body>
 </html>
